@@ -1,0 +1,40 @@
+<div class="container">
+<h3 class="row justify-content-start position"><span class="thead"><%= @user.full_name %>さんの会員詳細</span></h3>
+  <div class="col-md-8">
+    <table class="table customer-show">
+      <tr>
+        <th>会員ID</th>
+        <th><%= @userr.id %></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <th colspan="2"><%= @userr.last_name %><%= @user.first_name %></th>
+      </tr>
+      <tr>
+        <th>フリガナ</th>
+        <th colspan="2"><%= @user.last_name_kana %><%= @user.first_name_kana %></th>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <th colspan="2"><%= @user.email %></th>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <th>
+          <% if @user.is_active==true %>
+          <p class="text-success">有効</p>
+          <% else %>
+          <p class="text-danger">退会</p>
+          <% end %>
+        </th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th class="list-button"><%# link_to "編集する", edit_admin_user_path(@user.id), class: "btn btn-outline-success btn-block btn-success size" %></th>
+        <th class="list-button"><%# link_to "コメント履歴一覧を見る", _path(@user.id), class: "btn btn-outline-primary btn-primary size" %></th>
+      </tr>
+    </table>
+  </div>
+</div>

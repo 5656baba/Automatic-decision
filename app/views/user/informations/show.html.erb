@@ -1,0 +1,33 @@
+<div class="container-fulid">
+  <div class="row justify-content-start position">
+    <div class="col-md-6 my-page">
+      <p class="about-me">マイページ</p>
+      <div class="registrations">
+        <p class="order">登録情報</p>
+        <p class="info-edit"><%= link_to "編集する", edit_information_path, class: "btn btn-outline-success btn-block btn-success size" %></p>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <th class="thead">氏名</th>
+          <th><%= @user.last_name %><%= @user.first_name %></th>
+        </tr>
+        <tr>
+          <th class="thead">カナ</th>
+          <th><%= @user.last_name_kana %><%= @user.first_name_kana %></th>
+        </tr>
+        <tr>
+          <th class="thead">メールアドレス</th>
+          <th><%= @user.email %></th>
+        </tr>
+      </table>
+      <div class="my-edit">
+        <p class="order">投稿レシピ一覧</p>
+        <p class="delivery-index"><%# link_to "一覧を見る", addresses_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
+      </div>
+      <div class="order-history">
+        <p class="order">コメント投稿履歴</p>
+        <p class="history-index"><%# link_to "一覧を見る", orders_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
+      </div>
+    </div>
+  </div>
+</div>

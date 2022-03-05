@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="error_message">
+    <% if @user.errors.any? %>
+      <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      </ul>
+      <% end %>
+    <% end %>
+  </div>
+<h3 class="row justify-content-start position"><span class="thead"><%= @user.full_name %>さんの会員情報編集</span></h3>
+<%= form_with model: @user, url: admin_customer_path, local:true do |f| %>
+  <div class="row justify-content-start">
+    <div class="col-md-9">
+      <table class="table">
+        <tr>
+          <th>会員ID</th>
+          <th><%= @user.id %></th>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <th><%= f.text_field :last_name, class: "rounded" %></th>
+          <th><%= f.text_field :first_name, class: "rounded" %></th>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <th><%= f.text_field :last_name_kana, class: "rounded" %></th>
+          <th><%= f.text_field :first_name_kana, class: "rounded" %></th>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <th><%= f.text_field :email, class: "rounded" %></th>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <th>
+            <%= f.radio_button :is_active, true %>
+            <%= f.label :is_active, "有効", {value: true, style: "display: inline-block;"} %>
+          </th>
+          <th>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, "退会", {value: false, style: "display: inline-block;"} %>
+          </th>
+        </tr>
+      </table>
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-outline-success btn-block btn-success size">変更を保存</button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
