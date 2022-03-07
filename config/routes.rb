@@ -15,4 +15,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
   end
   devise_for :users
+  resources :contacts, only: [:new, :create]
+  get 'thanks', to: 'contacts#thanks'
+  post 'check', to: 'contacts#check'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
 end

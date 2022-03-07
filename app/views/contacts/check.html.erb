@@ -1,0 +1,19 @@
+<p>お名前</p>
+<%= @contact.name %>
+
+<p>お問合せ内容</p>
+<%= @contact.message %>
+
+<%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
+<%= f.hidden_field :name %>
+<%= f.hidden_field :email %>
+<%= f.hidden_field :message %>
+<%= f.submit '送信' %>
+<% end %>
+
+<%= form_with model: @contact, url: back_path, method: :post, local: true do |f| %>
+<%= f.hidden_field :name %>
+<%= f.hidden_field :email %>
+<%= f.hidden_field :message %>
+<%= f.submit '入力画面に戻る' %>
+<% end %>
