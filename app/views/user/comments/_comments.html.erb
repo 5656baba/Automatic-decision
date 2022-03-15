@@ -1,0 +1,11 @@
+全<%= comments.count %>件
+<% comments.each do |comment| %>
+  <%= comment.comment %>
+  <%= comment.user.full_name %>
+  <div id="like_buttons_<%= comment.id %>">
+　　<%= render "likes/likes", comment: comment %>
+　</div>
+  <% if comment.user == current_user %>
+    <%= link_to "削除", post_comment_path(comment.id), method: :delete %>
+  <% end %>
+<% end %>

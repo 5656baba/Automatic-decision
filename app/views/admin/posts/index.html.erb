@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+  <%= post.user.full_name %>
+  <%= post.content %>
+  <%= post.created_at %>
+  <%= link_to '詳細へ', admin_post_path(post.id) %>
+  <%= link_to '削除する', admin_post_path(post.id), method: :delete %>
+<% end %>

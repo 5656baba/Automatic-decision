@@ -4,12 +4,22 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+    end
   end
   scope module: :user do
     resources :informations, only: [:show, :edit, :update] do
       collection do
         get 'unsubscribe'
         patch 'withdraw'
+      end
+    end
+    resources :post_recipes
+    resources :resumes, only: [:index, :show, :edit, :destroy]
+    resources :posts, only: [:index, :show, :create, :destroy] do
+      resources :comments, only: [:create, :destroy] do
+        resources :likes, only: [:create, :destroy]
       end
     end
     root to: 'homes#top'

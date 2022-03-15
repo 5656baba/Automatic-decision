@@ -1,0 +1,25 @@
+<h4>レシピ編集</h4>
+<%= form_with model: @post_recipe, url: post_recipe_path, local:true do |f| %>
+  <%= f.attachment_field :image %>
+  <h4>料理名</h4>
+  <%= f.text_field :title, class: "rounded" %>
+  <h4>材料</h4>
+  <section>
+    <%= f.fields_for :ingredients do |ingredient| %>
+      <%= render "ingredient_fields", f: ingredient %>
+      <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+    <% end %>
+    <%= link_to_add_fields "材料の追加", f, :ingredients %>
+  </section>
+  <h4>作り方</h4>
+  <section class="step">
+    <div class="field">
+      <%= f.fields_for :steps do |step| %>
+        <%= render "step_fields", f: step %>
+        <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+      <% end %>
+      <%= link_to_add_fields "作り方の追加", f, :steps %>
+    </div>
+  </section>
+  <%= f.submit '変更を保存' %>
+<% end %>

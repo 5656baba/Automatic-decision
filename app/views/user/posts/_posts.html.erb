@@ -1,0 +1,8 @@
+全<%= posts.count %>件
+<% posts.each do |post| %>
+  <%= post.content %>
+  <%= post.user.full_name %>
+  <% if post.user == current_user %>
+    <%= link_to "削除", post_path(post.id), method: :delete %>
+  <% end %>
+<% end %>

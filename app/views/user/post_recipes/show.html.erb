@@ -1,0 +1,18 @@
+<%= attachment_image_tag @post_recipe, :image, :fill, 400, 300, fallback: "no_image.jpg" %>
+<p><%= @post_recipe.title %></p>
+<p><%= @post_recipe.user.full_name %></p>
+<h4>材料</h4>
+<% @post_recipe.ingredients.each do |ingredient| %>
+  <p><%= ingredient.name %></p>
+  <p><%= ingredient.quantity %></p>
+<% end %>
+<h4>作り方</h4>
+<% @post_recipe.steps.each do |step| %>
+  <%= step.id %>
+  <%= attachment_image_tag step, :image, :fill, 400, 300, fallback: "no_image.jpg" %>
+  <p><%= step.description %></p>
+<% end %>
+<% if @post_recipe.user == current_user %>
+  <%= link_to "編集する", edit_post_recipe_path(@post_recipe.id), class: "btn btn-outline-success btn-block btn-success size" %>
+  <%= link_to "投稿を削除する", post_recipe_path(@post_recipe.id), method: :delete, class: "btn btn-outline-danger btn-block btn-danger size", data: { confirm: "投稿を削除しますか？" } %>
+<% end %>

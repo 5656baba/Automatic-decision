@@ -1,0 +1,6 @@
+<% @comments.each do |comment| %>
+  <%= comment.user.full_name %>
+  <%= comment.comment %>
+  <%= comment.created_at %>
+  <%= link_to '削除する', resume_path(comment.id), method: :delete %>
+<% end %>

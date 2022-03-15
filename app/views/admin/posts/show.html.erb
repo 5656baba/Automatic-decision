@@ -1,0 +1,11 @@
+<h2>投稿詳細</h2>
+<%= @post.content %>
+<%= @post.user.full_name %>
+
+<h2>コメント一覧</h2>
+全<%= @comments.count %>件
+<% @comments.each do |comment| %>
+  <%= comment.comment %>
+  <%= comment.user.full_name %>
+  <%= link_to "削除", admin_post_comment_path(comment.id), method: :delete %>
+<% end %>

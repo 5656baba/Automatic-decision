@@ -1,0 +1,10 @@
+<h2>投稿一覧</h2>
+<div id="posts_area">
+  <%= render 'posts/posts', posts: @posts %>
+</div>
+
+<h2>投稿する</h2>
+<%= form_with model: @post, url: posts_path, do |f| %>
+  <%= f.text_area :content, placeholder: '投稿内容を入力してください' %>
+  <%= f.submit "投稿する", class: "btn btn-outline-success btn-block btn-success" %>
+<% end %>

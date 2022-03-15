@@ -22,11 +22,15 @@
       </table>
       <div class="my-edit">
         <p class="order">投稿レシピ一覧</p>
-        <p class="delivery-index"><%# link_to "一覧を見る", addresses_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
+        <p class="delivery-index"><%= link_to "一覧を見る", resumes_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
+      </div>
+      <div class="order-history">
+        <p class="order">投稿履歴</p>
+        <p class="history-index"><%= link_to "一覧を見る", resume_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
       </div>
       <div class="order-history">
         <p class="order">コメント投稿履歴</p>
-        <p class="history-index"><%# link_to "一覧を見る", orders_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
+        <p class="history-index"><%= link_to "一覧を見る", edit_resume_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
       </div>
     </div>
   </div>
