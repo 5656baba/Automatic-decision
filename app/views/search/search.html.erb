@@ -1,0 +1,11 @@
+<p>検索結果</p>
+<% @resipes.each do |resipe| %>
+
+  <% if resipe.name.match(params[:keywords]).nil? %>
+  <% else %>
+       <%= "#{resipe['categoryName']}" %>
+    <!--レシピ名：<%# resipe %>-->
+    <% end %>
+
+
+<% end %>

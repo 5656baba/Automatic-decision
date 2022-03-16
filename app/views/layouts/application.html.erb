@@ -22,6 +22,10 @@
         <%= link_to "ログイン", new_user_session_path %>
       </li>
     <% end %>
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keywords, class: "search_form", placeholder: "材料で検索" %>
+      <%= f.submit '検索' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

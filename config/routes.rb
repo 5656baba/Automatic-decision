@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get 'thanks', to: 'contacts#thanks'
   post 'check', to: 'contacts#check'
   post 'contacts/back', to: 'contacts#back', as: 'back'
+  get 'search', to: 'search#search'
 end
