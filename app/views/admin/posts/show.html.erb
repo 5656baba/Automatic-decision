@@ -1,11 +1,20 @@
-<h2>投稿詳細</h2>
-<%= @post.content %>
-<%= @post.user.full_name %>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-5">
+      <h4>タイトル：<%= @post.title %></h4>
+      <p>投稿者：<%= @post.user.full_name %></p>
+      <p>投稿日<%= @post.created_at.to_s(:datetime_jp) %></p>
+      <p><%= @post.content %></p>
 
-<h2>コメント一覧</h2>
-全<%= @comments.count %>件
-<% @comments.each do |comment| %>
-  <%= comment.comment %>
-  <%= comment.user.full_name %>
-  <%= link_to "削除", admin_post_comment_path(comment.id), method: :delete %>
-<% end %>
+      <h4>コメント(全<%= @comments.count %>件)</h4>
+      <% @comments.each do |comment| %>
+        <p>投稿者：<%= comment.user.full_name %></p>
+        <p>投稿日：<%= comment.created_at.to_s(:datetime_jp) %></p>
+        <p><%= comment.comment %></p>
+        <%= link_to "削除", admin_comment_path(comment.id), method: :delete %>
+      <% end %>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

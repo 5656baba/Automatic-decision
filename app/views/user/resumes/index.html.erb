@@ -1,6 +1,0 @@
-<% @post_recipes.each do |post_recipe| %>
-  <%= post_recipe.user.full_name %>
-  <%= post_recipe.content %>
-  <%= post_recipe.created_at %>
-  <%= link_to '詳細へ', post_recipe_path(post_recipe.id) %>
-<% end %>

@@ -1,10 +1,22 @@
-<h2>投稿一覧</h2>
-<div id="posts_area">
-  <%= render 'posts/posts', posts: @posts %>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-md-2">
+      <h2>投稿する</h2>
+      <%= form_with model: @post, url: posts_path do |f| %>
+        <div class="form-group">
+          <%= f.text_field :title, autofocus: true, placeholder: 'タイトル', class: "form-control", id: "text" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :content, placeholder: '投稿内容を入力してください', class: "form-control", size: "60x10" %>
+        </div>
+        <%= f.submit "投稿する", class: "btn btn-outline-success btn-block btn-success size" %>
+      <% end %>
+    </div>
+    <div class="col-10 mx-auto">
+      <h2>SNS相談一覧(全<%= @posts.count %>件)</h2>
+      <div id="posts_area">
+        <%= render 'user/posts/index', posts: @posts %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<h2>投稿する</h2>
-<%= form_with model: @post, url: posts_path, do |f| %>
-  <%= f.text_area :content, placeholder: '投稿内容を入力してください' %>
-  <%= f.submit "投稿する", class: "btn btn-outline-success btn-block btn-success" %>
-<% end %>

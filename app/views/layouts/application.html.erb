@@ -10,22 +10,64 @@
   </head>
 
   <body>
-     <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :keywords, class: "search_form", placeholder: "材料で検索" %>
-      <%= f.submit '検索' %>
-    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <h2><%= link_to "Automatic Decision", root_path, class: "navbar-brand" %></h2>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="search-form">
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :keywords, class: "search_form", placeholder: "材料で検索", class: "rounded", size: "40x50"%>
+            <%= f.submit '検索', class: "rounded btn btn-primary" %>
+          <% end %>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "マイページ", information_path(current_user.id), class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "SNS相談", posts_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "お問い合わせ", new_contact_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-white" %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "SNS相談投稿一覧", admin_posts_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "会員一覧", admin_users_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "コメント一覧", admin_comments_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-white" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "SNS相談", posts_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: "text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "お問い合わせ", new_contact_path, class: "text-white" %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

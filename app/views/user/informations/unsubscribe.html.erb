@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 bye">
+    <div class="col-md-12 mt-5">
       <div class="unsubscribe-text">
         <div class="reary">
           <h3>本当に退会しますか？</h3>
         </div>
         <div>
-          <h3>
+          <h3 class="mt-5">
             退会すると、会員登録情報や</br>
             これまでのコメント投稿履歴、レシピ投稿履歴が閲覧できなくなります。</br>
             また、コメント投稿、レシピ投稿機能は退会後は使用できなくなります。</br>
@@ -17,10 +17,10 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center unsubscribe-button">
+  <div class="row justify-content-center">
     <div class="col-md-3">
-      <div class="unsubscribe">
-        <p><%= link_to "退会しない",information_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
+      <div class="mt-5">
+        <p><%= link_to "退会しない",information_path(current_user.id), class: "btn btn-outline-primary btn-block btn-primary size" %></p>
         <p><%= link_to "退会する", withdraw_informations_path, method: :patch, class: "btn btn-outline-danger btn-block btn-danger size", data: { confirm: "本当に退会しますか？" } %></p>
       </div>
     </div>

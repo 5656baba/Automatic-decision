@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:index, :show, :destroy] do
-      resources :comments, only: [:destroy]
-    end
+    resources :posts, only: [:index, :show, :destroy]
+    resources :comments, only: [:index, :destroy]
   end
   scope module: :user do
     resources :informations, only: [:show, :edit, :update] do
@@ -15,11 +14,10 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-    resources :post_recipes
-    resources :resumes, only: [:index, :show, :edit, :destroy]
+    resources :resumes, only: [:show, :edit, :destroy]
     resources :posts, only: [:index, :show, :create, :destroy] do
       resources :comments, only: [:create, :destroy] do
-        resources :likes, only: [:create, :destroy]
+        resource :likes, only: [:create, :destroy]
       end
     end
     root to: 'homes#top'

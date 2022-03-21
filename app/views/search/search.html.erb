@@ -1,11 +1,28 @@
-<p>検索結果</p>
-<% @resipes.each do |resipe| %>
-
-  <% if resipe.name.match(params[:keywords]).nil? %>
-  <% else %>
-       <%= "#{resipe['categoryName']}" %>
-    <!--レシピ名：<%# resipe %>-->
-    <% end %>
-
-
-<% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <h2>検索結果(全<%= @quantity %>)件</h2>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">レシピ画像</th>
+            <th scope="col" colspan="2">レシピ名</th>
+            <th scope="col" colspan="2">URL</th>
+            <th scope="coi">材料の種類</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipes.each do |recipe| %>
+    　　　　　　<tr>
+              <td><img src="<%= recipe.image_id %>" width="80" height="60"></td>
+              <td class="td-name align-middle" colspan="2"><%= recipe.title %></td>
+              <td class="td-name align-middle" colspan="2"><a href="<%= recipe.url %>"><%= recipe.url %></a></td>
+              <td class="align-middle"><%= recipe.recipe_ingredients.count %>種類</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @recipes %>
+    </div>
+  </div>
+</div>

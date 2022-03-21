@@ -1,6 +1,25 @@
-<% @posts.each do |post| %>
-  <%= post.user.full_name %>
-  <%= post.content %>
-  <%= post.created_at %>
-  <%= link_to '詳細へ', post_path(post.id) %>
-<% end %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">相談タイトル</th>
+            <th scope="col" colspan="2">相談内容</th>
+            <th scope="col">投稿日時</th>
+            <th scope="coi"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td class="td-name"><%= post.title %></td>
+              <td class="td-name" colspan="2"><%= post.content %></td>
+              <td class="example"><%= post.created_at.to_s(:datetime_jp) %></td>
+              <td class="example"><%= link_to '詳細へ', post_path(post.id) %></td>
+            </tr>
+          <% end %>
+      </tbody>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 class User::InformationsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:show, :edit, :update, :withdraw, :unsubscribe]
-  
+
   def show
     @user=current_user
   end
@@ -14,9 +14,9 @@ class User::InformationsController < ApplicationController
   end
 
   def update
-    @user = current_user  #今回はcustomer_id飛ばしてないから最初からcustomer=current_customerを入れておく
+    @user = current_user
     if @user.update(user_params)
-      redirect_to customers_path
+      redirect_to information_path(current_user)
     else
       render :edit
     end
@@ -29,7 +29,7 @@ class User::InformationsController < ApplicationController
     flash[:notice] = "退会手続きが完了いたしました。ご利用いただき誠にありがとうございました。"
     redirect_to root_path
   end
-  
+
   def ensure_correct_user
     unless user_id=current_user.id
     redirect_to root_path(current_user)

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="error_message">
     <% if @user.errors.any? %>
       <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
@@ -9,14 +9,15 @@
       <% end %>
     <% end %>
   </div>
-<h3 class="row justify-content-start position"><span class="thead"><%= @user.full_name %>さんの会員情報編集</span></h3>
-<%= form_with model: @user, url: admin_customer_path, local:true do |f| %>
-  <div class="row justify-content-start">
-    <div class="col-md-9">
+  <div class="row justify-content-center">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-5">
+      <h3 class="center-position"><%= @user.full_name %>さんの会員情報編集</h3>
+      <%= form_with model: @user, url: admin_user_path, local:true do |f| %>
       <table class="table">
         <tr>
           <th>会員ID</th>
-          <th><%= @user.id %></th>
+          <th colspan="2"><%= @user.id %></th>
         </tr>
         <tr>
           <th>氏名</th>
@@ -30,7 +31,7 @@
         </tr>
         <tr>
           <th>メールアドレス</th>
-          <th><%= f.text_field :email, class: "rounded" %></th>
+          <th colspan="2"><%= f.text_field :email, class: "rounded" %></th>
         </tr>
         <tr>
           <th>会員ステータス</th>
@@ -46,10 +47,11 @@
       </table>
       <div class="row justify-content-center">
         <div class="col-md-3">
-          <button type="submit" class="btn btn-outline-success btn-block btn-success size">変更を保存</button>
+          <%= f.submit "変更を保存", class: 'btn btn-outline-success btn-block btn-success size' %>
         </div>
       </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="col-md-2"></div>
   </div>
 </div>

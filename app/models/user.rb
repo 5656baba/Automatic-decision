@@ -10,15 +10,12 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true
 
   has_many :post_recipes, dependent: :destroy
+  accepts_nested_attributes_for :post_recipes
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
   def full_name
     last_name + ' ' + first_name
-  end
-
-  def already_liked?(comment)
-   self.likes.exists?(comment_id: comment.id)
   end
 end

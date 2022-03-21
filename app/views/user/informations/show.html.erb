@@ -1,12 +1,15 @@
-<div class="container-fulid">
-  <div class="row justify-content-start position">
-    <div class="col-md-6 my-page">
-      <p class="about-me">マイページ</p>
-      <div class="registrations">
-        <p class="order">登録情報</p>
-        <p class="info-edit"><%= link_to "編集する", edit_information_path, class: "btn btn-outline-success btn-block btn-success size" %></p>
-      </div>
-      <table class="table table-bordered">
+<div class="container-fluid">
+  <div class="row justify-content-cenetr">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 text">
+      <p>マイページ</p>
+      <table>
+        <tr>
+          <th>登録情報</th>
+          <th><%= link_to "編集する", edit_information_path, class: "btn btn-outline-success btn-block btn-success mx-auto d-block w-50 size" %></th>
+        </tr>
+      </table>
+      <table class="table table-bordered mt-5">
         <tr>
           <th class="thead">氏名</th>
           <th><%= @user.last_name %><%= @user.first_name %></th>
@@ -20,18 +23,21 @@
           <th><%= @user.email %></th>
         </tr>
       </table>
-      <div class="my-edit">
-        <p class="order">投稿レシピ一覧</p>
-        <p class="delivery-index"><%= link_to "一覧を見る", resumes_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
-      </div>
-      <div class="order-history">
-        <p class="order">投稿履歴</p>
-        <p class="history-index"><%= link_to "一覧を見る", resume_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
-      </div>
-      <div class="order-history">
-        <p class="order">コメント投稿履歴</p>
-        <p class="history-index"><%= link_to "一覧を見る", edit_resume_path, class: "btn btn-outline-primary btn-block btn-primary size" %></p>
-      </div>
+      <table class="mt-5">
+        <tr>
+          <th>投稿レシピ一覧</th>
+          <th><%= link_to "一覧を見る", resumes_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-50 size" %></th>
+        </tr>
+        <tr>
+          <th>投稿履歴</th>
+          <th><%= link_to "一覧を見る", resume_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-50 size" %></th>
+        </tr>
+        <tr>
+          <th>コメント投稿履歴</th>
+          <th><%= link_to "一覧を見る", edit_resume_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-50 size" %></th>
+        </trv>
+      </table>
     </div>
+    <div class="col-md-3"></div>
   </div>
 </div>

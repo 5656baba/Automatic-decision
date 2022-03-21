@@ -16,3 +16,88 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+
+ html,body{
+  height: 100%;
+ }
+
+ .container-fluid, .row, .col{
+  height: 100%;
+ }
+
+.welcom{
+ text-align:center;
+ width: 900px;
+ padding: 30px;
+ padding-left:1em;
+ text-indent:-1em;
+ font-size: 30px;
+ margin-left: 150px;
+}
+
+.welcom>p{
+ width: 900px;
+ padding: 30px;
+ padding-left:1em;
+ text-indent:-1em;
+ font-size: 15px;
+}
+
+.size{
+ color:#FFF;
+}
+
+.text{
+ text-align:center;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+td.example{
+ white-space: nowrap;
+}
+
+td.td-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unsubscribe-text{
+  text-align: center;
+}
+
+.pagination{
+  justify-content: center;
+  background-color: #fff;
+}
+
+.nav-item{
+ padding: 10px;
+}
+
+nav{
+ background-color: #ec715f;
+}
+
+.search-form{
+ text-align: center;
+ padding-top: 5px;
+}
+
+.font-size{
+ width: 20px;
+ height: 50px;
+}
+
+.col-md-2{
+ background-color: #FFCC99;
+}
+
+.center-position{
+ text-align: center;
+}

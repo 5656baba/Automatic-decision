@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">タイトル</th>
+      <th scope="col" colspan="2">相談内容</th>
+      <th scope="col">投稿者</th>
+      <th scope="col">コメント数</th>
+      <th scope="coi"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% posts.each do |post| %>
+  <tr>
+    <td class="td-name"><%= link_to post.title, post_path(post.id) %></td>
+    <td class="td-name" colspan="2"><%= link_to post.content, post_path(post.id) %></td>
+    <td class="example"><%= post.user.full_name %></td>
+    <td><%= post.comments.count %>件</td>
+    <td class="example">
+      <% if post.user == current_user %>
+        <%= link_to "削除", post_path(post.id), method: :delete %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

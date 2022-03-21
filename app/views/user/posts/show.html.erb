@@ -1,15 +1,38 @@
-<h2>投稿詳細</h2>
-<%= @post.content %>
-<%= @post.user.full_name %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-3">
+      <% if user_signed_in? %>
+        <h2>コメントする</h2>
+        <%= form_with(model:[@post, @comment], local: true) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :comment, placeholder: 'コメントを入力してください', size: "30x10" %>
+        </div>
+          <%= f.hidden_field :post_id, value: @post.id  %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit "コメントする", class: "btn btn-outline-success mx-auto d-block btn-success size" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-8 mx-auto">
+      <h2>タイトル：<%= @post.title %></h2>
+      <p>投稿者：<%= @post.user.full_name %></p>
+      <p>投稿日：<%= @post.created_at.to_s(:datetime_jp) %></p>
+      <p><%= @post.content %></p>
 
-<h2>コメント一覧</h2>
-<div id="comments_area">
-  <%= render 'comments/comments', comments: @comments %>
+      <h2>コメント(全<%= @comments.count %>件)</h2>
+      <% @comments.each do |comment| %>
+        <p>投稿者：<%= comment.user.full_name %></p>
+        <div style="display: flex;">
+          <p><%= comment.comment %></p>
+          <div id="like_buttons_<%= comment.id %>">
+        　　<%= render "user/likes/new", comment: comment %>
+        　</div>
+        </div>
+        <% if user_signed_in? && (comment.user_id == current_user.id) %>
+          <%= link_to "コメントを削除", post_comment_path(@post, comment), method: :delete %>
+        <% end %>
+        </br>
+      <% end %>
+      </div>
+    </div>
 </div>
-
-<h2>コメントする</h2>
-<%= form_with model: @comment, url: post_comments_path, do |f| %>
-  <%= f.text_area :comment, placeholder: 'コメントを入力してください' %>
-  <%= f.hidden_field :post_id, value: @post.id  %>
-  <%= f.submit "コメントする", class: "btn btn-outline-success btn-block btn-success" %>
-<% end %>

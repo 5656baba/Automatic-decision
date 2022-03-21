@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-5">
+      <h4 class="center-position">コメント一覧(全<%= @comments.count %>件)</h4>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">コメント先</th>
+            <th scope="col">コメント投稿者</th>
+            <th scope="col" colspan="2">コメント内容</th>
+            <th scope="col">投稿日時</th>
+            <th scope="coi"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td class="td-name"><%= comment.post.title %></td>
+              <td class="td-name"><%= comment.user.full_name %></td>
+              <td class="td-name" colspan="2"><%= comment.comment %></td>
+              <td class="example"><%= comment.created_at.to_s(:datetime_jp) %></td>
+              <td class="example"><%= link_to '削除する', admin_comment_path(comment.id), method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

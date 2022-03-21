@@ -1,18 +1,25 @@
-<h2>ログイン</h2>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-5 center-position">
+    <h2>ログイン</h2>
+    <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "40x10", class: "rounded form" %>
+      </div>
 
-<%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="field">
+        <%= f.label :パスワード %><br />
+        <%= f.password_field :password, autocomplete: "current-password", size: "40x10", class: "rounded form" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+      <div class="actions">
+        <%= f.submit "ログイン", class: 'btn btn-primary button-size size btn-block mx-auto  mt-5 w-25' %>
+      </div>
+    <% end %>
+    </div>
+    <div class="col-md-2"></div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+</div>
 

@@ -1,48 +1,60 @@
-<h2>新規会員登録</h2>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-5 center-position">
+    <h2>新規会員登録</h2>
+    <%= form_with(model: resource, url: registration_path(resource_name),local: true) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+    <table class="table">
+      <tr>
+        <th>名前</th>
+        <th>（姓）<%= f.text_field :last_name, autofocus: true, placeholder:"令和", class: "input" %></th>
+        <th>（名）<%= f.text_field :first_name, autofocus: true, placeholder:"道子", class: "input" %></th>
+      </tr>
 
-<%= form_with(model: resource, url: registration_path(resource_name),local: true) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+      <tr>
+        <th>フリガナ</th>
+        <th>（セイ）<%= f.text_field :last_name_kana, autofocus: true, placeholder:"レイワ" %></th>
+        <th>（メイ）<%= f.text_field :first_name_kana, autofocus: true, placeholder:"ミチコ" %></th>
+      </tr>
 
-  <div class="field">
-    <%= f.label :姓 %><br />
-    <%= f.text_field :last_name, autofocus: true %>
+      <tr>
+        <th>メールアドレス</th>
+        <th>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
+        </th>
+      </tr>
+
+      <tr>
+        <th>
+          パスワード
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %>文字以上)</em>
+          <% end %>
+        </th>
+        <th>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </th>
+      </tr>
+      <tr>
+        <th>パスワード（確認用）</th>
+        <th>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </th>
+      </tr>
+
+      <tr>
+        <th></th>
+        <th>
+          <div class="actions">
+            <%= f.submit "新規登録", class: 'btn btn-primary button-size size btn-block mx-auto  mt-5' %>
+          </div>
+        </th>
+      </tr>
+    </table>
+    <% end %>
+    </div>
+    <div class="col-md-2"></div>
   </div>
-
-  <div class="field">
-    <%= f.label :名 %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :セイ %><br />
-    <%= f.text_field :last_name_kana, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メイ %><br />
-    <%= f.text_field :first_name_kana, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード（確認用） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
+</div>
 
