@@ -1,35 +1,32 @@
 <div class="container-fluid">
   <div class="row justify-content-cenetr">
-    <div class="col-md-3"></div>
-    <div class="col-md-6 text">
-      <p>マイページ</p>
-      <table>
-        <tr>
-          <th>登録情報</th>
-          <th><%= link_to "編集する", edit_information_path, class: "btn btn-outline-success btn-block btn-success mx-auto d-block w-50 size" %></th>
-        </tr>
-      </table>
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-5 center-position">
+      <h3>登録情報</h3>
       <table class="table table-bordered mt-5">
         <tr>
-          <th class="thead">氏名</th>
+          <th class="align-middle">プロフィール画像</th>
+          <th><%= attachment_image_tag @user, :image, :fill, 300, 200, fallback: "no_image.jpg" %></th>
+        </tr>
+        <tr>
+          <th>氏名</th>
           <th><%= @user.last_name %><%= @user.first_name %></th>
         </tr>
         <tr>
-          <th class="thead">カナ</th>
+          <th>カナ</th>
           <th><%= @user.last_name_kana %><%= @user.first_name_kana %></th>
         </tr>
         <tr>
-          <th class="thead">メールアドレス</th>
+          <th>メールアドレス</th>
           <th><%= @user.email %></th>
         </tr>
       </table>
+      <div>
+        <%= link_to "編集する", edit_information_path, class: "btn btn-outline-success btn-block btn-success mx-auto d-block w-25 size" %>
+      </div>
       <table class="mt-5">
         <tr>
-          <th>投稿レシピ一覧</th>
-          <th><%= link_to "一覧を見る", resumes_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-50 size" %></th>
-        </tr>
-        <tr>
-          <th>投稿履歴</th>
+          <th>SNS相談投稿履歴</th>
           <th><%= link_to "一覧を見る", resume_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-50 size" %></th>
         </tr>
         <tr>
@@ -38,6 +35,6 @@
         </trv>
       </table>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-2"></div>
   </div>
 </div>

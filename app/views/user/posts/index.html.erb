@@ -1,22 +1,36 @@
-<div class="container-fluid mt-5">
-  <div class="row">
-    <div class="col-md-2">
+<div class="container-fluid">
+  <div class="row justify-content-cenetr">
+    <div class="col-md-2 pt-5">
+
       <h2>投稿する</h2>
       <%= form_with model: @post, url: posts_path do |f| %>
         <div class="form-group">
           <%= f.text_field :title, autofocus: true, placeholder: 'タイトル', class: "form-control", id: "text" %>
         </div>
         <div class="form-group">
-          <%= f.text_area :content, placeholder: '投稿内容を入力してください', class: "form-control", size: "60x10" %>
+          <%= f.text_area :content, placeholder: '投稿内容を入力してください', class: "form-control", size: "40x10" %>
         </div>
-        <%= f.submit "投稿する", class: "btn btn-outline-success btn-block btn-success size" %>
+        <% if user_signed_in? %>
+          <%= f.submit "投稿する", class: "btn btn-outline-success btn-block btn-success size" %>
+        <% else %>
+          <%= link_to "ユーザー登録して投稿する", new_user_registration_path, class: "btn btn-outline-success btn-block btn-success size" %>
+        <% end %>
       <% end %>
     </div>
-    <div class="col-10 mx-auto">
-      <h2>SNS相談一覧(全<%= @posts.count %>件)</h2>
+    <div class="col-md-8 center-position mt-5">
+      <div class="error_message">
+        <% if flash[:notice] %>
+          <div class="flash">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+      </div>
+      <h2>SNS相談一覧(全<%= @count %>件)</h2>
       <div id="posts_area">
         <%= render 'user/posts/index', posts: @posts %>
       </div>
+      <%= paginate @posts %>
     </div>
+    <div class="col-md-2"></div>
   </div>
 </div>

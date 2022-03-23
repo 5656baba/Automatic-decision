@@ -1,21 +1,23 @@
-<div class="container-fluid">
-  <% if flash[:notice] %>
-    <div class="flash-withdraw">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
-  <div class="row justify-content-center">
-    <div class="col-md-10">
-      <div class="welcom">
-        <h1>余りがちな食材を救出！</h1>
-        <h2>自炊しようと思って材料を買っても腐らせがちなあなたへ</h2>
-        <p>
-          いつも余ってしまう食材を調理しようと思っても、新たにレシピを調べたりするのは大変ですよね。</br>
-          このサイトでは、余ってしまった食材を入力することで、なるべくその食材だけを使ったレシピを表示することができます。</br>
-        　また、SNS相談では、料理に関する相談をすることが可能です。</br>
-        　相談を投稿、それに対するコメントを投稿するには、会員登録が必要になります。
-        </p>
-      </div>
-    </div>
+<% if flash[:notice] %>
+  <div class="flash-withdraw">
+    <%= flash[:notice] %>
   </div>
+<% end %>
+<div class="box">
+  <%= image_tag 'free1.jpg', class: "top-image-1" %>
+  <%= image_tag 'free2.jpg', class: "top-image-2" %>
+  <%= image_tag 'free3.jpg', class: "top-image-3" %>
+  <%= image_tag 'free4.jpg', class: "top-image-4" %>
+  <%= image_tag 'free5.jpg', class: "top-image-5" %>
+</div>
+
+<div class="welcom mb-5">
+  <h1>余りがちな食材を救出！</h1>
+  <h2>自炊しようと思って材料を買っても腐らせがちなあなたへ</h2>
+  <p class="font-size">
+    いつも余ってしまう食材を調理しようと思っても、新たにレシピを調べたりするのは大変ですよね。</br>
+    このサイトでは、余ってしまった食材を入力することで、できる限りその食材だけを使ったレシピを表示することができます。</br>
+  　また、SNS相談では、料理に関する相談をすることが可能です。</br>
+  　相談を投稿、それに対するコメントを投稿するには、会員登録が必要になります。
+  </p>
 </div>

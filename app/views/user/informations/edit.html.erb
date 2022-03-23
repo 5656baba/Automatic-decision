@@ -1,19 +1,24 @@
-<div class="container">
-  <div class="error_message">
-    <% if @user.errors.any? %>
-      <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      </ul>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="row justify-content-start">
-    <div class="col-md-9">
-  　　<h3 class="row justify-content-start"><span class="thead">会員情報編集</span></h3>
-  　　<%= form_with model: @user, url: information_path, local:true do |f| %>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-5 center-position">
+      <div class="error_message">
+        <% if @user.errors.any? %>
+          <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          </ul>
+          <% end %>
+        <% end %>
+      </div>
+      <h4>会員情報編集</h4>
+      <%= form_with model: @user, url: information_path, local:true do |f| %>
       <table class="table">
+        <tr>
+          <th>プロフィール画像</th>
+          <th><%= f.attachment_field :image, fallback: "no_image.jpg" %></th>
+        </tr>
         <tr>
           <th>氏名</th>
           <th><%= f.text_field :last_name, class: "rounded" %></th>
@@ -31,13 +36,14 @@
       </table>
       <div>
         <p>
-          <button type="submit" class="btn btn-outline-success btn-block btn-success w-50 mx-auto d-block size">編集内容をを保存</button>
+          <button type="submit" class="btn btn-outline-success btn-block btn-success w-25 mx-auto d-block size">編集内容をを保存</button>
         </p>
         <p>
-          <%= link_to "退会する",unsubscribe_informations_path, class: "btn btn-outline-danger btn-block btn-danger w-50 mx-auto d-block size" %>
+          <%= link_to "退会する",unsubscribe_informations_path, class: "btn btn-outline-danger btn-block btn-danger w-25 mx-auto d-block size" %>
         </p>
       </div>
     <% end %>
     </div>
+    <div class="col-md-2"></div>
   </div>
 </div>

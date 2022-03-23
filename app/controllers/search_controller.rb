@@ -1,6 +1,20 @@
 class SearchController < ApplicationController
+  require 'miyabi'
+
   def search
-    recipe_ingredients = RecipeIngredient.where("ingredient LIKE ?", "%" + params[:keywords] + "%")
+    keywords = params[:keywords].gsub(/　/," ").strip
+    if keywords.include?(" ")
+      keywords_arr = keywords.split(" ")
+      recipe_ingredients = []
+      keywords_arr.each do |keyword|
+        recipe_ingredients += RecipeIngredient.where("ingredient LIKE ?", "%" + keyword + "%")
+        recipe_ingredients += RecipeIngredient.where("ingredient LIKE ?", "%" + keyword.to_kana + "%")
+        recipe_ingredients += RecipeIngredient.where("ingredient LIKE ?", "%" + keyword.to_hira + "%")
+      end
+    else
+      recipe_ingredients = RecipeIngredient.where("ingredient LIKE ?", "%" + keywords + "%")
+    end
+
     recipes = []
     recipe_ingredients.each do |recipe_ingredient|
       recipes.push(recipe_ingredient.recipe)

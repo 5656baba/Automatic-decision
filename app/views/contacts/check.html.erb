@@ -1,17 +1,20 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-10">
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8　center-position">
       <h2>お問い合わせ内容確認画面</h2>
-      <p>お名前：<%= @contact.name %></p>
-      <p>お問合せ内容：<%= @contact.message %></p>
-      <%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
-        <%= f.hidden_field :name %>
-        <%= f.hidden_field :email %>
-        <%= f.hidden_field :message %>
-        <div>
-          <p><%= f.submit '送信', class: "btn btn-outline-success btn-block w-50 mx-auto d-block btn-success size" %></p>
-        </div>
-      <% end %>
+      <div>
+        <p>お名前：<%= @contact.name %></p>
+        <p>メールアドレス：<%= @contact.email %></p>
+        <p>お問合せ内容：<%= @contact.message %></p>
+        <%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :email %>
+          <%= f.hidden_field :message %>
+          <div>
+            <p><%= f.submit '送信', class: "btn btn-outline-success btn-block w-50 mx-auto d-block btn-success size" %></p>
+          </div>
+        <% end %>
+      </div>
 
       <%= form_with model: @contact, url: back_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :name %>

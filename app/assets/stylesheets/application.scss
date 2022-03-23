@@ -33,7 +33,7 @@
  padding-left:1em;
  text-indent:-1em;
  font-size: 30px;
- margin-left: 150px;
+ margin-left: 360px;
 }
 
 .welcom>p{
@@ -42,14 +42,11 @@
  padding-left:1em;
  text-indent:-1em;
  font-size: 15px;
+ text-align: center;
 }
 
 .size{
  color:#FFF;
-}
-
-.text{
- text-align:center;
 }
 
 table {
@@ -100,4 +97,125 @@ nav{
 
 .center-position{
  text-align: center;
+}
+
+.comments{
+ display: flex;
+ justify-content: space-between;
+ padding-right: 50px;
+}
+
+img{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.post-show{
+ display: flex;
+}
+
+.likes{
+ text-align: right;
+ padding-right: 50px;
+}
+
+.color{
+ color: #00F;
+}
+
+.box{
+ height: 400px;
+ position: relative;
+}
+
+.top-image-1{
+ width: 30%;
+ height: 150px;
+ position: absolute;
+ top: 25px;
+ right: 25px;
+ border-radius: initial;
+}
+
+.top-image-2{
+ width: 30%;
+ height: 150px;
+ position: absolute;
+ bottom: 25px;
+ left: 25px;
+ border-radius: initial;
+}
+
+.top-image-3{
+ width: 30%;
+ height: 150px;
+ position: absolute;
+ bottom: 25px;
+ right: 25px;
+ border-radius: initial;
+}
+
+.top-image-4{
+ width: 30%;
+ height: 150px;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+
+.top-image-5{
+ width: 30%;
+ height: 150px;
+ position: absolute;
+ top: 25px;
+ left: 25px;
+ border-radius: initial;
+}
+
+.comment-text{
+ width: 576px;
+ white-space: pre-line;
+}
+
+.stick{
+  height: 3px;
+  width: 100%;
+  background-color: #ec715f;
+  margin: 8px auto 30px;
+}
+
+.stick-comment{
+  height: 1px;
+  width: 100%;
+  background-color: #00F;
+  margin: 0px auto 30px;
+}
+
+.img-size{
+ width: 80%;
+ height: 80%;
+}
+
+.post-title{
+ font-size: 20px;
+}
+
+.font-size{
+ font-size: 16px;
+ font-weight: bold;
+}
+
+.error_message{
+ color: #F00;
+}
+
+.error_message>ul{
+ list-style-type: none;
+}
+
+.success-message{
+ color: #0F0;
 }

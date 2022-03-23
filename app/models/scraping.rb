@@ -6,8 +6,6 @@ class Scraping < ApplicationRecord
     base_url = 'https://cookpad.com'
     search_url = "#{base_url}/search"
 
-    sleep rand(1.5..3.0)
-
     charset = nil
     html = open(search_url) do |f|
       charset = f.charset
@@ -20,7 +18,7 @@ class Scraping < ApplicationRecord
 
     recent_url = "#{base_url}#{more_link}"
 
-    sleep rand(1.5..3.0)
+    sleep rand(1.5..2.0)
 
     charset = nil
     html = open(recent_url) do |f|
@@ -34,7 +32,7 @@ class Scraping < ApplicationRecord
       doc_recent.css('.recipe-title').each do |f|
         show_url = "#{base_url}#{f['href']}"
 
-        sleep rand(1.5..3.0)
+        sleep rand(1.5..2.0)
 
         charset = nil
         html = open(show_url) do |f|

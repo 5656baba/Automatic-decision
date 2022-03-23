@@ -1,38 +1,67 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-3">
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-2 pt-5">
       <% if user_signed_in? %>
         <h2>コメントする</h2>
         <%= form_with(model:[@post, @comment], local: true) do |f| %>
         <div class="form-group">
-          <%= f.text_area :comment, placeholder: 'コメントを入力してください', size: "30x10" %>
+          <%= f.text_area :comment, placeholder: 'コメントを入力してください', class: "form-control", size: "40x10" %>
         </div>
           <%= f.hidden_field :post_id, value: @post.id  %>
           <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.submit "コメントする", class: "btn btn-outline-success mx-auto d-block btn-success size" %>
+          <%= f.submit "コメントする", class: "btn btn-outline-success btn-block btn-success size" %>
         <% end %>
+      <% else %>
+        <%= link_to "ユーザー登録してコメントする", new_user_registration_path, class: "btn btn-outline-success btn-block btn-success size" %>
       <% end %>
     </div>
-    <div class="col-8 mx-auto">
-      <h2>タイトル：<%= @post.title %></h2>
-      <p>投稿者：<%= @post.user.full_name %></p>
-      <p>投稿日：<%= @post.created_at.to_s(:datetime_jp) %></p>
-      <p><%= @post.content %></p>
-
-      <h2>コメント(全<%= @comments.count %>件)</h2>
-      <% @comments.each do |comment| %>
-        <p>投稿者：<%= comment.user.full_name %></p>
-        <div style="display: flex;">
-          <p><%= comment.comment %></p>
-          <div id="like_buttons_<%= comment.id %>">
-        　　<%= render "user/likes/new", comment: comment %>
-        　</div>
-        </div>
-        <% if user_signed_in? && (comment.user_id == current_user.id) %>
-          <%= link_to "コメントを削除", post_comment_path(@post, comment), method: :delete %>
+    <div class="col-md-8 mt-5 pl-5">
+      <div class="error_message">
+        <% if flash[:notice] %>
+          <div class="flash">
+            <%= flash[:notice] %>
+          </div>
         <% end %>
-        </br>
-      <% end %>
       </div>
+      <div class="post-show">
+        <div>
+          <p><%= attachment_image_tag @post.user, :image, :fill, 60, 60, fallback: "no_image.jpg", class: "img" %></p>
+        </div>
+        <div class="pl-5">
+          <p class="color"><%= @post.user.full_name %></p>
+          <p><%= @post.created_at.to_s(:datetime_jp) %></p>
+        </div>
+      </div>
+      <p class="post-title">タイトル：<%= @post.title %></p>
+      <p><%= @post.content %></p>
+      <p class="stick"></p>
+
+      <h4>コメント(全<%= @count %>件)</h4>
+      <% @comments.each do |comment| %>
+      <div class="post-show">
+        <div>
+          <p><%= attachment_image_tag comment.user, :image, :fill, 60, 60, fallback: "no_image.jpg", class: "img img-size" %></p>
+        </div>
+        <div class="pl-5">
+          <p class="color"><%= comment.user.full_name %></p>
+          <p><%= comment.created_at.to_s(:datetime_jp) %></p>
+        </div>
+      </div>
+        <div class="comments">
+          <p class="comment-text"><%= comment.comment %></p>
+          <div>
+          <% if user_signed_in? && (comment.user_id == current_user.id) %>
+            <%= link_to "コメントを削除", post_comment_path(@post, comment), method: :delete, class: "text-danger" %>
+          <% end %>
+          </div>
+        </div>
+        <div id="like_buttons_<%= comment.id %>" class="likes">
+      　　<%= render "user/likes/new", comment: comment %>
+      　</div>
+      　<p class="stick-comment"></p>
+      <% end %>
+      <%= paginate @comments %>
+      </div>
+      <div class="col-md-2"></div>
     </div>
 </div>

@@ -6,6 +6,7 @@
       <p>投稿者：<%= @post.user.full_name %></p>
       <p>投稿日<%= @post.created_at.to_s(:datetime_jp) %></p>
       <p><%= @post.content %></p>
+      <p class="stick"></p>
 
       <h4>コメント(全<%= @comments.count %>件)</h4>
       <% @comments.each do |comment| %>
@@ -13,7 +14,9 @@
         <p>投稿日：<%= comment.created_at.to_s(:datetime_jp) %></p>
         <p><%= comment.comment %></p>
         <%= link_to "削除", admin_comment_path(comment.id), method: :delete %>
+        <p class="stick-comment"></p>
       <% end %>
+      <%= paginate @comments %>
     </div>
     <div class="col-md-2"></div>
   </div>

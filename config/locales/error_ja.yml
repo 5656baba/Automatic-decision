@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        email: メールアドレス
+        last_name: 姓（漢字・ひらがな）
+        first_name: 名（漢字・ひらがな）
+        last_name_kana: 姓(カタカナ)
+        first_name_kana: 名（カタカナ）
+      post:
+        title: タイトル
+        content: 投稿内容
+      comment:
+        comment: コメント内容
+      contact:
+        name: お名前
+        email: メールアドレス
+        message: お問い合わせ内容
