@@ -7,6 +7,7 @@ class Admin::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.page(params[:page]).per(10)
+    @count = @post.comments.count
   end
 
   def destroy

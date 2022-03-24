@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row justify-content-cenetr">
     <div class="col-md-2"></div>
-    <div class="col-md-8 mt-5 center-position">
+    <div class="col-md-8 col-12 mt-5 center-position">
       <h3>登録情報</h3>
       <table class="table table-bordered mt-5">
         <tr>
@@ -22,16 +22,16 @@
         </tr>
       </table>
       <div>
-        <%= link_to "編集する", edit_information_path, class: "btn btn-outline-success btn-block btn-success mx-auto d-block w-25 size" %>
+        <%= link_to "編集する", edit_information_path, class: "btn btn-outline-success btn-block btn-success mx-auto d-block w-auto size" %>
       </div>
       <table class="mt-5">
         <tr>
           <th>SNS相談投稿履歴</th>
-          <th><%= link_to "一覧を見る", resume_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-50 size" %></th>
+          <th><%= link_to "一覧を見る", resume_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-auto size" %></th>
         </tr>
         <tr>
           <th>コメント投稿履歴</th>
-          <th><%= link_to "一覧を見る", edit_resume_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-50 size" %></th>
+          <th><%= link_to "一覧を見る", edit_resume_path, class: "btn btn-outline-primary btn-block btn-primary mx-auto d-block w-auto size" %></th>
         </trv>
       </table>
     </div>

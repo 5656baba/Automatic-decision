@@ -8,20 +8,20 @@
     <table class="table">
       <tr>
         <th>名前</th>
-        <th>（姓）<%= f.text_field :last_name, autofocus: true, placeholder:"令和", class: "input" %></th>
-        <th>（名）<%= f.text_field :first_name, autofocus: true, placeholder:"道子", class: "input" %></th>
+        <th>（姓）<%= f.text_field :last_name, autofocus: true, placeholder:"令和", class: "input rounded" %></th>
+        <th>（名）<%= f.text_field :first_name, autofocus: true, placeholder:"道子", class: "input rounded" %></th>
       </tr>
 
       <tr>
         <th>フリガナ</th>
-        <th>（セイ）<%= f.text_field :last_name_kana, autofocus: true, placeholder:"レイワ" %></th>
-        <th>（メイ）<%= f.text_field :first_name_kana, autofocus: true, placeholder:"ミチコ" %></th>
+        <th>（セイ）<%= f.text_field :last_name_kana, autofocus: true, placeholder:"レイワ" , class: "rounded" %></th>
+        <th>（メイ）<%= f.text_field :first_name_kana, autofocus: true, placeholder:"ミチコ", class: "rounded"  %></th>
       </tr>
 
       <tr>
         <th>メールアドレス</th>
         <th>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com", class: "rounded" %>
         </th>
       </tr>
 
@@ -33,13 +33,13 @@
           <% end %>
         </th>
         <th>
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "rounded" %>
         </th>
       </tr>
       <tr>
         <th>パスワード（確認用）</th>
         <th>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded" %>
         </th>
       </tr>
 
@@ -47,7 +47,7 @@
         <th></th>
         <th>
           <div class="actions">
-            <%= f.submit "新規登録", class: 'btn btn-primary button-size size btn-block mx-auto  mt-5' %>
+            <%= f.submit "新規登録", class: 'btn btn-primary button-size size btn-block mx-auto mt-5' %>
           </div>
         </th>
       </tr>

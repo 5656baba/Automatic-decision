@@ -12,17 +12,14 @@
           </tr>
         </thead>
         <tbody>
-          <% @comments.each do |comment| %>
-            <tr>
-              <td class="td-name"><%= comment.post.title %></td>
-              <td class="td-name" colspan="2"><%= comment.comment %></td>
-              <td class="example"><%= comment.created_at.to_s(:datetime_jp) %></td>
-              <td class="example"><%= link_to '削除する', resume_path(comment.id), method: :delete %></td>
-            </tr>
-          <% end %>
+          <tr>
+            <td class="td-name"><%= @comment.post.title %></td>
+            <td class="td-name" colspan="2"><%= @comment.comment %></td>
+            <td class="example"><%= @comment.created_at.to_s(:datetime_jp) %></td>
+            <td class="example"><%= link_to '削除する', admin_comment_path(@comment.id), method: :delete %></td>
+          </tr>
         </tbody>
       </table>
-      <%= paginate @comments %>
     </div>
     <div class="col-md-2"></div>
   </div>

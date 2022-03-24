@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-2"></div>
-    <div class="col-md-8 mt-5 center-position">
+    <div class="col-md-8 col-12 mt-5 center-position">
       <div class="error_message">
         <% if @user.errors.any? %>
           <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
@@ -14,32 +14,34 @@
       </div>
       <h4>会員情報編集</h4>
       <%= form_with model: @user, url: information_path, local:true do |f| %>
-      <table class="table">
-        <tr>
-          <th>プロフィール画像</th>
-          <th><%= f.attachment_field :image, fallback: "no_image.jpg" %></th>
-        </tr>
-        <tr>
-          <th>氏名</th>
-          <th><%= f.text_field :last_name, class: "rounded" %></th>
-          <th><%= f.text_field :first_name, class: "rounded" %></th>
-        </tr>
-        <tr>
-          <th>カナ</th>
-          <th><%= f.text_field :last_name_kana, class: "rounded" %></th>
-          <th><%= f.text_field :first_name_kana, class: "rounded" %></th>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <th><%= f.text_field :email, class: "rounded" %></th>
-        </tr>
-      </table>
+      <div class="pr-5">
+        <table class="table">
+          <tr>
+            <th>プロフィール画像</th>
+            <th><%= f.attachment_field :image, fallback: "no_image.jpg" %></th>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <th><%= f.text_field :last_name, class: "rounded" %></th>
+            <th><%= f.text_field :first_name, class: "rounded" %></th>
+          </tr>
+          <tr>
+            <th>カナ</th>
+            <th><%= f.text_field :last_name_kana, class: "rounded" %></th>
+            <th><%= f.text_field :first_name_kana, class: "rounded" %></th>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <th><%= f.text_field :email, class: "rounded" %></th>
+          </tr>
+        </table>
+      </div>
       <div>
         <p>
-          <button type="submit" class="btn btn-outline-success btn-block btn-success w-25 mx-auto d-block size">編集内容をを保存</button>
+          <button type="submit" class="btn btn-outline-success btn-block btn-success w-auto mx-auto d-block size">編集内容をを保存</button>
         </p>
         <p>
-          <%= link_to "退会する",unsubscribe_informations_path, class: "btn btn-outline-danger btn-block btn-danger w-25 mx-auto d-block size" %>
+          <%= link_to "退会する",unsubscribe_informations_path, class: "btn btn-outline-danger btn-block btn-danger w-auto mx-auto d-block size" %>
         </p>
       </div>
     <% end %>

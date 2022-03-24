@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :destroy]
-    resources :comments, only: [:index, :destroy]
+    resources :comments, only: [:index, :show, :destroy]
   end
   scope module: :user do
     resources :informations, only: [:show, :edit, :update] do

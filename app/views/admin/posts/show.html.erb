@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-2"></div>
-    <div class="col-md-8 mt-5">
+    <div class="col-md-8 col-12 mt-5">
       <h4>タイトル：<%= @post.title %></h4>
       <p>投稿者：<%= @post.user.full_name %></p>
       <p>投稿日<%= @post.created_at.to_s(:datetime_jp) %></p>
       <p><%= @post.content %></p>
       <p class="stick"></p>
 
-      <h4>コメント(全<%= @comments.count %>件)</h4>
+      <h4>コメント(全<%= @count %>件)</h4>
       <% @comments.each do |comment| %>
         <p>投稿者：<%= comment.user.full_name %></p>
         <p>投稿日：<%= comment.created_at.to_s(:datetime_jp) %></p>

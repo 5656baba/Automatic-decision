@@ -20,7 +20,7 @@
 //= require_tree .
 
 
-window.addEventListener('DOMContentLoaded',function () {
+window.addEventListener("turbolinks:load",function () {
   $(".slider-inner").skippr({
     // スライドショーの変化（"fade" or "slide"）
     transition : 'fade',

@@ -28,7 +28,7 @@
 
 .welcom{
  text-align:center;
- width: 900px;
+ width: 100%;
  padding: 30px;
  padding-left:1em;
  text-indent:-1em;
@@ -37,7 +37,7 @@
 }
 
 .welcom>p{
- width: 900px;
+ width: 100%;
  padding: 30px;
  padding-left:1em;
  text-indent:-1em;
@@ -202,4 +202,42 @@ img{
  background-image: url("<%= asset_path('free5.jpg') %>");
  height: 800px;
  background-size:cover;
+}
+
+.img-size{
+width: 80px;
+height: 60px;
+}
+
+@media screen and (max-width:767.98px) {
+
+td.example{
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+ }
+
+.p{
+ white-space: nowrap;
+}
+
+.img-size{
+ width: 30px;
+ height: 30px;
+}
+
+input[type="text"] {
+ width: 110px;
+ height: 40px;
+}
+
+.font-size{
+ font-size: 15px;
+}
+
+input[type="text"].a{
+ width: 200px;
+ height: 40px;
+}
+
 }

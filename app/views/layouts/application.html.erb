@@ -19,7 +19,7 @@
         </button>
         <div class="search-form">
           <%= form_with url: search_path, method: :get, local: true do |f| %>
-            <%= f.text_field :keywords, class: "search_form", placeholder: "材料で検索", class: "rounded", size: "40x50"%>
+            <%= f.text_field :keywords, class: "search_form", placeholder: "材料で検索", class: "rounded a", size: "40x50"%>
             <%= f.submit '検索', class: "rounded btn btn-primary" %>
           <% end %>
         </div>

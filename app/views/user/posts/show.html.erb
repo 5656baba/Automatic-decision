@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col-md-2 pt-5">
+    <div class="col-md-2 col-12 pt-5">
       <% if user_signed_in? %>
         <h2>コメントする</h2>
         <%= form_with(model:[@post, @comment], local: true) do |f| %>
@@ -15,7 +15,7 @@
         <%= link_to "ユーザー登録してコメントする", new_user_registration_path, class: "btn btn-outline-success btn-block btn-success size" %>
       <% end %>
     </div>
-    <div class="col-md-8 mt-5 pl-5">
+    <div class="col-md-8 col-12 mt-5 pl-5">
       <div class="error_message">
         <% if flash[:notice] %>
           <div class="flash">
@@ -51,7 +51,7 @@
           <p class="comment-text"><%= comment.comment %></p>
           <div>
           <% if user_signed_in? && (comment.user_id == current_user.id) %>
-            <%= link_to "コメントを削除", post_comment_path(@post, comment), method: :delete, class: "text-danger" %>
+            <%= link_to "削除", post_comment_path(@post, comment), method: :delete, class: "text-danger p" %>
           <% end %>
           </div>
         </div>
