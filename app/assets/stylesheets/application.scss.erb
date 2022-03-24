@@ -33,7 +33,7 @@
  padding-left:1em;
  text-indent:-1em;
  font-size: 30px;
- margin-left: 360px;
+ margin: auto;
 }
 
 .welcom>p{
@@ -125,56 +125,6 @@ img{
  color: #00F;
 }
 
-.box{
- height: 400px;
- position: relative;
-}
-
-.top-image-1{
- width: 30%;
- height: 150px;
- position: absolute;
- top: 25px;
- right: 25px;
- border-radius: initial;
-}
-
-.top-image-2{
- width: 30%;
- height: 150px;
- position: absolute;
- bottom: 25px;
- left: 25px;
- border-radius: initial;
-}
-
-.top-image-3{
- width: 30%;
- height: 150px;
- position: absolute;
- bottom: 25px;
- right: 25px;
- border-radius: initial;
-}
-
-.top-image-4{
- width: 30%;
- height: 150px;
- position: absolute;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
-}
-
-.top-image-5{
- width: 30%;
- height: 150px;
- position: absolute;
- top: 25px;
- left: 25px;
- border-radius: initial;
-}
-
 .comment-text{
  width: 576px;
  white-space: pre-line;
@@ -218,4 +168,38 @@ img{
 
 .success-message{
  color: #0F0;
+}
+
+.slider{
+ height: 500px;
+}
+
+.image1{
+ background-image: url("<%= asset_path('free1.jpg') %>");
+ height: 800px;
+ background-size:cover;
+}
+
+.image2{
+ background-image: url("<%= asset_path('free2.jpg') %>");
+ height: 800px;
+ background-size:cover;
+}
+
+.image3{
+ background-image: url("<%= asset_path('free3.jpg') %>");
+ height: 800px;
+ background-size:cover;
+}
+
+.image4{
+ background-image: url("<%= asset_path('free4.jpg') %>");
+ height: 800px;
+ background-size:cover;
+}
+
+.image5{
+ background-image: url("<%= asset_path('free5.jpg') %>");
+ height: 800px;
+ background-size:cover;
 }
