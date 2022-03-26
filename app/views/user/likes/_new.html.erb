@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if comment.liked_by?(current_user) %>
     <%= link_to post_comment_likes_path(@post, comment), method: :delete, remote: true do %>
-      <i class="fa fa-heart" aria-hidden="true" style="color: red;"><%= comment.likes.count %>いいね</i>
+      <i class="fa fa-heart" aria-hidden="true" style="color: red;" id="liking"><%= comment.likes.count %>いいね</i>
     <% end %>
   <% else %>
     <%= link_to post_comment_likes_path(@post, comment), method: :post, remote: true do %>
-      <i class="fa fa-heart" aria-hidden="true" style="color: #C0C0C0;"><%= comment.likes.count %>いいね</i>
+      <i class="fa fa-heart" aria-hidden="true" style="color: #C0C0C0;" id="no_liking"><%= comment.likes.count %>いいね</i>
     <% end %>
   <% end %>
 <% end %>

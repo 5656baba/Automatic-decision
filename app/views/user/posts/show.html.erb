@@ -25,7 +25,7 @@
       </div>
       <div class="post-show">
         <div>
-          <p><%= attachment_image_tag @post.user, :image, :fill, 60, 60, fallback: "no_image.jpg", class: "img" %></p>
+          <p><%= attachment_image_tag @post.user, :image, :fill, 60, 60, fallback: "no_image.jpg", class: "img post_image_factorybot" %></p>
         </div>
         <div class="pl-5">
           <p class="color"><%= @post.user.full_name %></p>
@@ -40,7 +40,7 @@
       <% @comments.each do |comment| %>
       <div class="post-show">
         <div>
-          <p><%= attachment_image_tag comment.user, :image, :fill, 60, 60, fallback: "no_image.jpg", class: "img img-size" %></p>
+          <p><%= attachment_image_tag comment.user, :image, :fill, 60, 60, fallback: "no_image.jpg", class: "img img-size comment_image_factorybot" %></p>
         </div>
         <div class="pl-5">
           <p class="color"><%= comment.user.full_name %></p>

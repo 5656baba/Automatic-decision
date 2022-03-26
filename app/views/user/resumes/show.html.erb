@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <% @posts.each do |post| %>
-            <tr>
+            <tr class="user_post_count">
               <td class="td-name"><%= post.title %></td>
               <td class="td-name" colspan="2"><%= post.content %></td>
               <td class="example"><%= post.created_at.to_s(:datetime_jp) %></td>

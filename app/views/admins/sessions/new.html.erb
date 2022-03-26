@@ -2,15 +2,22 @@
   <div class="row justify-content-center">
     <div class="col-md-2"></div>
     <div class="col-md-8 col-12 mt-5 center-position">
+      <% if @admin.errors.any? %>
+        <%= @admin.errors.count %>件のエラーが発生しました
+        <% @admin.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
     <h2>管理者ログイン</h2>
     <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
+      <%= render "admins/shared/error_messages", resource: resource %>
       <div class="field">
-        <%= f.label :メールアドレス %><br />
+        <%= f.label :メールアドレス %><br/>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com", size: "40x10", class: "rounded form" %>
       </div>
 
       <div class="field">
-        <%= f.label :パスワード %><br />
+        <%= f.label :パスワード %><br/>
         <%= f.password_field :password, autocomplete: "current-password", size: "40x10", class: "rounded form" %>
       </div>
 

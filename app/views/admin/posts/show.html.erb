@@ -4,17 +4,19 @@
     <div class="col-md-8 col-12 mt-5">
       <h4>タイトル：<%= @post.title %></h4>
       <p>投稿者：<%= @post.user.full_name %></p>
-      <p>投稿日<%= @post.created_at.to_s(:datetime_jp) %></p>
+      <p>投稿日：<%= @post.created_at.to_s(:datetime_jp) %></p>
       <p><%= @post.content %></p>
       <p class="stick"></p>
 
       <h4>コメント(全<%= @count %>件)</h4>
       <% @comments.each do |comment| %>
-        <p>投稿者：<%= comment.user.full_name %></p>
-        <p>投稿日：<%= comment.created_at.to_s(:datetime_jp) %></p>
-        <p><%= comment.comment %></p>
-        <%= link_to "削除", admin_comment_path(comment.id), method: :delete %>
-        <p class="stick-comment"></p>
+        <div class="comment-text">
+          <p>投稿者：<%= comment.user.full_name %></p>
+          <p>投稿日：<%= comment.created_at.to_s(:datetime_jp) %></p>
+          <p><%= comment.comment %></p>
+          <%= link_to "削除", admin_comment_path(comment.id), method: :delete %>
+          <p class="stick-comment"></p>
+        </div>
       <% end %>
       <%= paginate @comments %>
     </div>

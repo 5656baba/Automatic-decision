@@ -19,7 +19,7 @@
 //= require turbolinks
 //= require_tree .
 
-
+/* global $ */
 window.addEventListener("turbolinks:load",function () {
   $(".slider-inner").skippr({
     // スライドショーの変化（"fade" or "slide"）
