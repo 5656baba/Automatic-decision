@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   def active_for_authentication?
-   super && (is_active == true)
+    super && (is_active == true)
   end
 
   def full_name

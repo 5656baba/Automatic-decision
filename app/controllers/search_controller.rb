@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   require 'miyabi'
 
   def search
-    @keywords = params[:keywords].gsub(/　/," ").strip
+    @keywords = params[:keywords].gsub(/　/, " ").strip
     if @keywords.include?(" ")
       keywords_arr = keywords.split(" ")
       recipe_ingredients = []
@@ -20,7 +20,7 @@ class SearchController < ApplicationController
       recipes.push(recipe_ingredient.recipe)
     end
     recipes.uniq!
-    recipes_order = recipes.sort_by! {|v| v.recipe_ingredients.count}
+    recipes_order = recipes.sort_by! { |v| v.recipe_ingredients.count }
     @recipes = Kaminari.paginate_array(recipes_order).page(params[:page]).per(15)
     @quantity = recipes.count
   end

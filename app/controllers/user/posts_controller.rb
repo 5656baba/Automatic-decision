@@ -1,5 +1,5 @@
 class User::PostsController < ApplicationController
-  before_action :authenticate_user!,except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @posts = Post.all.page(params[:page]).per(10)
 
@@ -21,22 +21,22 @@ class User::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id=current_user.id
+    @post.user_id = current_user.id
     if @post.save
       redirect_to posts_path
       flash[:notice] = "投稿に成功しました"
-    elsif params[:post][:title] == ""  && params[:post][:content] == ""
+    elsif params[:post][:title] == "" && params[:post][:content] == ""
       @post = Post.new(post_params)
-      @post.user_id=current_user.id
+      @post.user_id = current_user.id
       redirect_to posts_path, notice: "タイトル、投稿内容を入力してください"
     elsif params[:post][:content] == ""
       flash.now[:notice] = "投稿内容を入力してください"
       @post = Post.new(post_params)
-      @post.user_id=current_user.id
+      @post.user_id = current_user.id
       redirect_to posts_path, notice: "投稿内容を入力してください"
     elsif params[:post][:title] == ""
       @post = Post.new(post_params)
-      @post.user_id=current_user.id
+      @post.user_id = current_user.id
       redirect_to posts_path, notice: "タイトルを入力してください"
     end
   end
@@ -48,6 +48,7 @@ class User::PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:content, :title)
   end

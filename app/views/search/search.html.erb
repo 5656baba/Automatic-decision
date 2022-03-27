@@ -2,20 +2,20 @@
   <div class="row justify-content-center">
     <div class="col-md-2"></div>
     <div class="col-md-8 mt-5">
-      <h2 class="center-position p"><%= @keywords %>の検索結果：全(<%= @quantity %>)件</h2>
+      <h4 class="center-position p"><%= @keywords %>の検索結果：全(<%= @quantity %>)件</h4>
       <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">レシピ画像</th>
+            <th scope="col" class="none">レシピ画像</th>
             <th scope="col" colspan="2">レシピ名</th>
             <th scope="col" colspan="2">URL</th>
-            <th scope="coi">材料の種類</th>
+            <th scope="coi" class="example">材料</th>
           </tr>
         </thead>
         <tbody>
           <% @recipes.each do |recipe| %>
             <tr>
-              <td><img class="img-size" src="<%= recipe.image_id %>"></td>
+              <td class="none"><img class="img-size" src="<%= recipe.image_id %>"></td>
               <td class="td-name align-middle example" colspan="2"><%= recipe.title %></td>
               <td class="td-name align-middle" colspan="2"><a href="<%= recipe.url %>"><%= recipe.url %></a></td>
               <td class="align-middle example"><%= recipe.recipe_ingredients.count %>種類</td>

@@ -27,3 +27,11 @@
     </div>
   </div>
 </div>
+<script>
+  $(function(){
+   history.pushState(null, null);
+   $(window).on("popstate", function (event) {
+     location.href = "/contacts/new";
+   })
+ });
+</script>

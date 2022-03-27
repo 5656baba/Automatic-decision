@@ -28,7 +28,7 @@ class Scraping < ApplicationRecord
 
     doc_recent = Nokogiri::HTML.parse(html, nil, charset)
 
-    while doc_recent.present? do
+    while doc_recent.present?
       doc_recent.css('.recipe-title').each do |f|
         show_url = "#{base_url}#{f['href']}"
 

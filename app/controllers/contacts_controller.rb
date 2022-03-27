@@ -1,10 +1,11 @@
 class ContactsController < ApplicationController
   def new
-    @contact=Contact.new
+    @contact = Contact.new
   end
 
   def check
-    @contact=Contact.new(contact_params)
+    @contact = Contact.new(contact_params)
+    render :new if @contact.invalid?
     if params[:contact][:name] == "" && params[:contact][:email] != "" && params[:contact][:message] != ""
       flash.now[:notice] = "お名前を入力してください"
       @contact = Contact.new(contact_params)
@@ -30,7 +31,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact=Contact.new(contact_params)
+    @contact = Contact.new(contact_params)
     @contact.save
     ContactMailer.send_mail(@contact).deliver_now
     redirect_to thanks_path

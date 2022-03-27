@@ -4,6 +4,7 @@ class Admin::CommentsController < ApplicationController
     @comments = Comment.all.page(params[:page]).per(10)
     @count = Comment.count
   end
+
   def show
     @comment = Comment.find(params[:id])
   end

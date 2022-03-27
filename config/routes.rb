@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
-    sessions: 'admin/sessions'
+    sessions: 'admin/sessions',
   }
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]

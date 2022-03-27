@@ -112,7 +112,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_css('.post_image_factorybot')
       end
       it '名前が表示される' do
-        expect(page).to have_content post.user.last_name +  ' '  + post.user.first_name
+        expect(page).to have_content post.user.last_name + ' ' + post.user.first_name
       end
       it '作成時間が表示される' do
         expect(page).to have_content post.created_at.to_s(:datetime_jp)
@@ -158,7 +158,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
 
     context '削除リンクのテスト' do
       it '投稿の削除リンクが表示される' do
-        expect(page).to have_link '削除', href: post_comment_path(post.id ,comment)
+        expect(page).to have_link '削除', href: post_comment_path(post.id, comment)
       end
       it '正しく削除される' do
         click_link '削除'
@@ -169,155 +169,141 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(current_path).to eq '/posts/' + post.id.to_s
       end
     end
-    context 'いいね機能の確認' do
-      before do
-        #@post = FactoryBot.create(:post)
-        @comment = FactoryBot.create(:comment)
+  end
+
+  describe 'ユーザごとのSNS相談履歴一覧画面のテスト' do
+    before do
+      visit resume_path(user)
+    end
+
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/resumes/' + user.id.to_s
       end
-      it 'ユーザーが他のコメントをいいねできる' do
-        find('#no_liking').click
-        expect(page).to have_selector('#liking', visible: false)
-        expect(@comment.likes.count).to eq(1)
+      it '自分の投稿が表示される' do
+        expect(page.all('.user_post_count').length).to eq user.posts.size
       end
-      it 'ユーザーが他のコメントのいいねを解除できる' do
-        find('#liking').click
-        expect(page).to have_selector('#no_liking', visible: false)
-        expect(@comment.likes.count).to eq(0)
+      it '自分の投稿への詳細リンクが表示される' do
+        expect(page).to have_link '詳細へ', href: post_path(post)
+      end
+      it '他人の投稿は表示されない' do
+        expect(page).not_to have_link '', href: post_path(other_post)
+        expect(page).not_to have_content other_post.title
+        expect(page).not_to have_content other_post.content
+        expect(page).not_to have_content other_post.created_at
       end
     end
   end
 
-    describe 'ユーザごとのSNS相談履歴一覧画面のテスト' do
-      before do
-        visit resume_path(user)
-      end
+  describe 'ユーザごとのコメント一覧画面のテスト' do
+    before do
+      visit edit_resume_path(user)
+    end
 
-      context '表示内容の確認' do
-        it 'URLが正しい' do
-          expect(current_path).to eq '/resumes/' +  user.id.to_s
-        end
-        it '自分の投稿が表示される' do
-          expect(page.all('.user_post_count').length).to eq user.posts.size
-        end
-        it '自分の投稿への詳細リンクが表示される' do
-          expect(page).to have_link '詳細へ', href: post_path(post)
-        end
-        it '他人の投稿は表示されない' do
-          expect(page).not_to have_link '', href: post_path(other_post)
-          expect(page).not_to have_content other_post.title
-          expect(page).not_to have_content other_post.content
-          expect(page).not_to have_content other_post.created_at
-        end
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/resumes/' + user.id.to_s + '/edit'
+      end
+      it 'コメント一覧に自分のコメントした投稿のtitleが表示される' do
+        expect(page).to have_content comment.post.title
+      end
+      it 'コメント一覧に自分のコメントのcommentが表示される' do
+        expect(page).to have_content comment.comment
+      end
+      it '他人の投稿は表示されない' do
+        expect(page).not_to have_link '', href: resume_path(other_comment)
+        expect(page).not_to have_content other_comment.comment
       end
     end
 
-    describe 'ユーザごとのコメント一覧画面のテスト' do
-      before do
-        visit edit_resume_path(user)
+    context '削除リンクのテスト' do
+      it '投稿の削除リンクが表示される' do
+        expect(page).to have_link '削除する', href: resume_path(comment)
       end
+      it '正しく削除される' do
+        click_link '削除する'
+        expect(Comment.where(post_id: post.id, id: comment.id).count).to eq 0
+      end
+      it 'リダイレクト先が、投稿一覧画面になっている' do
+        click_link '削除する'
+        expect(current_path).to eq '/resumes/' + user.id.to_s + '/edit'
+      end
+    end
+  end
 
-      context '表示の確認' do
-        it 'URLが正しい' do
-          expect(current_path).to eq '/resumes/' + user.id.to_s + '/edit'
-        end
-        it 'コメント一覧に自分のコメントした投稿のtitleが表示される' do
-          expect(page).to have_content comment.post.title
-        end
-        it 'コメント一覧に自分のコメントのcommentが表示される' do
-          expect(page).to have_content comment.comment
-        end
-        it '他人の投稿は表示されない' do
-          expect(page).not_to have_link '', href: resume_path(other_comment)
-          expect(page).not_to have_content other_comment.comment
-        end
+  describe '自分のユーザ情報編集画面のテスト' do
+    before do
+      visit edit_information_path(user)
+    end
+
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/informations/' + user.id.to_s + '/edit'
       end
-      context '削除リンクのテスト' do
-        it '投稿の削除リンクが表示される' do
-          expect(page).to have_link '削除する', href: resume_path(comment)
-        end
-        it '正しく削除される' do
-          click_link '削除する'
-          expect(Comment.where(post_id: post.id, id: comment.id).count).to eq 0
-        end
-        it 'リダイレクト先が、投稿一覧画面になっている' do
-          click_link '削除する'
-          expect(current_path).to eq '/resumes/' + user.id.to_s + '/edit'
-        end
+      it '名前編集フォームに自分の名前(姓)が表示される' do
+        expect(page).to have_field 'user[last_name]', with: user.last_name
+      end
+      it '名前編集フォームに自分の名前(名)が表示される' do
+        expect(page).to have_field 'user[first_name]', with: user.first_name
+      end
+      it '名前編集フォームに自分の名前(セイ)が表示される' do
+        expect(page).to have_field 'user[last_name_kana]', with: user.last_name_kana
+      end
+      it '名前編集フォームに自分の名前(メイ)が表示される' do
+        expect(page).to have_field 'user[first_name_kana]', with: user.first_name_kana
+      end
+      it 'メールアドレスフォームが表示される' do
+        expect(page).to have_field 'user[email]', with: user.email
+      end
+      it '編集内容を保存ボタンが表示される' do
+        expect(page).to have_button '編集内容を保存'
+      end
+      it '退会確認画面へのリンクが表示される' do
+        expect(page).to have_link '退会する', href: unsubscribe_informations_path
       end
     end
 
-    describe '自分のユーザ情報編集画面のテスト' do
+    context '更新成功のテスト' do
       before do
-        visit edit_information_path(user)
+        @user_old_last_name = user.last_name
+        @user_old_first_name = user.first_name
+        @user_old_last_name_kana = user.last_name_kana
+        @user_old_first_name_kana = user.first_name_kana
+        @user_old_email = user.email
+        fill_in 'user[last_name]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'user[first_name]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'user[last_name_kana]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'user[first_name_kana]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'user[email]', with: Faker::Internet.email
+        click_button '編集内容を保存'
       end
 
-      context '表示の確認' do
-        it 'URLが正しい' do
-          expect(current_path).to eq '/informations/' + user.id.to_s + '/edit'
-        end
-        it '名前編集フォームに自分の名前(姓)が表示される' do
-          expect(page).to have_field 'user[last_name]', with: user.last_name
-        end
-        it '名前編集フォームに自分の名前(名)が表示される' do
-          expect(page).to have_field 'user[first_name]', with: user.first_name
-        end
-        it '名前編集フォームに自分の名前(セイ)が表示される' do
-          expect(page).to have_field 'user[last_name_kana]', with: user.last_name_kana
-        end
-        it '名前編集フォームに自分の名前(メイ)が表示される' do
-          expect(page).to have_field 'user[first_name_kana]', with: user.first_name_kana
-        end
-        it 'メールアドレスフォームが表示される' do
-          expect(page).to have_field 'user[email]'
-        end
-        it '編集内容を保存ボタンが表示される' do
-          expect(page).to have_button '編集内容を保存'
-        end
-        it '退会確認画面へのリンクが表示される' do
-          expect(page).to have_link '退会する', href: unsubscribe_informations_path
-        end
+      it 'last_nameが正しく更新される' do
+        expect(user.reload.last_name).not_to eq @user_old_last_name
       end
-
-      context '更新成功のテスト' do
-        before do
-          @user_old_last_name = user.last_name
-          @user_old_first_name = user.first_name
-          @user_old_last_name_kana = user.last_name_kana
-          @user_old_first_name_kana = user.first_name_kana
-          @user_old_email = user.email
-          fill_in 'user[last_name]', with: Faker::Lorem.characters(number: 5)
-          fill_in 'user[first_name]', with: Faker::Lorem.characters(number: 5)
-          fill_in 'user[last_name_kana]', with: Faker::Lorem.characters(number: 5)
-          fill_in 'user[first_name_kana]', with: Faker::Lorem.characters(number: 5)
-          fill_in 'user[email]', with: Faker::Internet.email
-          click_button '編集内容を保存'
-        end
-
-        it 'last_nameが正しく更新される' do
-          expect(user.reload.last_name).not_to eq @user_old_last_name
-        end
-        it 'last_nameが正しく更新される' do
-          expect(user.reload.first_name).not_to eq @user_old_first_name
-        end
-        it 'last_name_kanaが正しく更新される' do
-          expect(user.reload.last_name_kana).not_to eq @user_old_last_name_kana
-        end
-        it 'first_name_kanaが正しく更新される' do
-          expect(user.reload.first_name_kana).not_to eq @user_old_first_name_kana
-        end
-        it 'emailが正しく更新される' do
-          expect(user.reload.email).not_to eq @user_old_email
-        end
-        it 'リダイレクト先が、自分のユーザ詳細画面になっている' do
-          expect(current_path).to eq '/informations/' + user.id.to_s
-        end
+      it 'last_nameが正しく更新される' do
+        expect(user.reload.first_name).not_to eq @user_old_first_name
+      end
+      it 'last_name_kanaが正しく更新される' do
+        expect(user.reload.last_name_kana).not_to eq @user_old_last_name_kana
+      end
+      it 'first_name_kanaが正しく更新される' do
+        expect(user.reload.first_name_kana).not_to eq @user_old_first_name_kana
+      end
+      it 'emailが正しく更新される' do
+        expect(user.reload.email).not_to eq @user_old_email
+      end
+      it 'リダイレクト先が、自分のユーザ詳細画面になっている' do
+        expect(current_path).to eq '/informations/' + user.id.to_s
       end
     end
+  end
 
   describe '退会確認画面のテスト' do
     before do
       visit unsubscribe_informations_path
     end
+
     context '表示の確認' do
       it 'URLが正しい' do
         expect(current_path).to eq '/informations/unsubscribe'

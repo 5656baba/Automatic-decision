@@ -14,7 +14,7 @@
           <p>投稿者：<%= comment.user.full_name %></p>
           <p>投稿日：<%= comment.created_at.to_s(:datetime_jp) %></p>
           <p><%= comment.comment %></p>
-          <%= link_to "削除", admin_comment_path(comment.id), method: :delete %>
+          <%= link_to "削除", admin_comment_path(comment.id), method: :delete, id: 'delete-comment-button' + comment.id.to_s %>
           <p class="stick-comment"></p>
         </div>
       <% end %>

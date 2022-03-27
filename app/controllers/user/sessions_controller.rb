@@ -21,7 +21,7 @@ class User::SessionsController < Devise::SessionsController
   protected
 
   def reject_user
-    @user = User.find_by(email: params[:user][:email])  #flash.nowはrenderのみ
+    @user = User.find_by(email: params[:user][:email]) # flash.nowはrenderのみ
     if @user
       if @user.valid_password?(params[:user][:password]) && (@user.is_active == false)
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"

@@ -1,0 +1,17 @@
+2022-03-27 12:48:22 WARN Selenium [DEPRECATION] [:driver_path] Selenium::WebDriver::Chrome#driver_path= is deprecated. Use Selenium::WebDriver::Chrome::Service#driver_path= instead.
+F
+
+Failures:
+
+  1) [STEP2] ユーザログイン後のテスト 投稿の検索ができるとき 検索ができる
+     Failure/Error: expect(page).to have_content recipe.image_id
+       expected to find text "https://www.google.co.jp/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" in "Automatic Decision\n新規登録 ログイン SNS相談 お問い合わせ\njavaの検索結果：全(1)件\nレシピ画像 レシピ名 URL 材料 ruby https://example.com/ 1種類"
+     # ./spec/system/search_spec.rb:13:in `block (3 levels) in <top (required)>'
+
+Finished in 0.67813 seconds (files took 0.99402 seconds to load)
+1 example, 1 failure
+
+Failed examples:
+
+rspec ./spec/system/search_spec.rb:8 # [STEP2] ユーザログイン後のテスト 投稿の検索ができるとき 検索ができる
+

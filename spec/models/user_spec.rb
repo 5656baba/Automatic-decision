@@ -13,24 +13,28 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         is_expected.to eq false
       end
     end
+
     context 'first_nameカラム' do
       it '空欄でないこと' do
         user.last_name_kana = ''
         is_expected.to eq false
       end
     end
+
     context 'last_name_kanaカラム' do
       it '空欄でないこと' do
         user.first_name = ''
         is_expected.to eq false
       end
     end
+
     context 'first_name_kanaカラム' do
       it '空欄でないこと' do
         user.first_name_kana = ''
         is_expected.to eq false
       end
     end
+
     context 'emailカラム' do
       it '空欄でないこと' do
         user.email = ''
@@ -49,11 +53,13 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(User.reflect_on_association(:posts).macro).to eq :has_many
       end
     end
+
     context 'Commentモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:comments).macro).to eq :has_many
       end
     end
+
     context 'Likeモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:likes).macro).to eq :has_many

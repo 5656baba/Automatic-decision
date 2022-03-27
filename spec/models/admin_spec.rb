@@ -17,6 +17,7 @@ RSpec.describe 'adminモデルのテスト', type: :model do
         is_expected.to eq false
       end
     end
+
     context 'encrypted_passwordカラム' do
       it '空欄でないこと' do
         admin.password = ''

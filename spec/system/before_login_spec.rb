@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'ユーザーログイン前のテスト' do
   let(:contact) { create(:contact) }
+
   describe 'ヘッダーのテスト: ログインしていない場合' do
     before do
       visit root_path
@@ -36,11 +37,11 @@ describe 'ユーザーログイン前のテスト' do
       it 'Automatic Decisionリンクが表示される' do
         home_link = find_all('a')[0].native.inner_text
         expect(home_link).to match(/Automatic Decision/)
-        #home_link = find_all('a')[0].native.inner_text
-        #home_link = home_link.delete(' ')
-        #home_link.gsub!(/\n/, '')
-        #click_link home_link
-        #is_expected.to eq '/'
+        # home_link = find_all('a')[0].native.inner_text
+        # home_link = home_link.delete(' ')
+        # home_link.gsub!(/\n/, '')
+        # click_link home_link
+        # is_expected.to eq '/'
       end
       it '新規登録を押すと、新規登録画面に遷移する' do
         signup_link = find_all('a')[1].native.inner_text
@@ -144,6 +145,7 @@ describe 'ユーザーログイン前のテスト' do
         expect(page).to have_button '入力画面に戻る'
       end
     end
+
     context '投稿成功のテスト' do
       before do
         @name = Faker::Lorem.characters(number: 10)
@@ -179,7 +181,7 @@ describe 'ユーザーログイン前のテスト' do
       it 'URLが正しい' do
         expect(current_path).to eq '/contacts/back'
       end
-     it '「お名前*」と表示される' do
+      it '「お名前*」と表示される' do
         expect(page).to have_content 'お名前*'
       end
       it '「メールアドレス*」と表示される' do
@@ -279,6 +281,7 @@ describe 'ユーザーログイン前のテスト' do
       end
     end
   end
+
   describe 'ユーザログイン' do
     let(:user) { create(:user) }
 

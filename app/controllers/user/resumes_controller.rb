@@ -1,11 +1,11 @@
 class User::ResumesController < ApplicationController
   before_action :authenticate_user!
   def show
-    @posts=current_user.posts.page(params[:page]).per(10)
+    @posts = current_user.posts.page(params[:page]).per(10)
   end
 
   def edit
-    @comments=current_user.comments.page(params[:page]).per(10)
+    @comments = current_user.comments.page(params[:page]).per(10)
   end
 
   def destroy

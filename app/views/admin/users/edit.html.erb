@@ -36,11 +36,11 @@
         <tr>
           <th>会員ステータス</th>
           <th>
-            <%= f.radio_button :is_active, true %>
+            <%= f.radio_button :is_active, true, id: 'valid-radio-button' %>
             <%= f.label :is_active, "有効", {value: true, style: "display: inline-block;"} %>
           </th>
           <th>
-            <%= f.radio_button :is_active, false %>
+            <%= f.radio_button :is_active, false, id: 'invalid-radio-button' %>
             <%= f.label :is_active, "退会", {value: false, style: "display: inline-block;"} %>
           </th>
         </tr>

@@ -23,7 +23,7 @@
               <td class="example"><%= post.created_at.to_s(:datetime_jp) %></td>
               <td></td>
               <td class="example"><%= link_to '詳細へ', admin_post_path(post.id) %></td>
-              <td class="example"><%= link_to '削除する', admin_post_path(post.id), method: :delete %></td>
+              <td class="example"><%= link_to '削除する', admin_post_path(post.id), method: :delete, id: 'delete_button_id' + post.id.to_s %></td>
             </tr>
           <% end %>
         </tbody>
