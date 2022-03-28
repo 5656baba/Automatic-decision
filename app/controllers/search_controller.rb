@@ -15,7 +15,7 @@ class SearchController < ApplicationController
       recipe_ingredients = RecipeIngredient.where("ingredient LIKE ?", "%" + @keywords + "%")
     end
 
-    recipe_lists = recipe_ingredients.select(:id).distinct
+    recipe_lists = recipe_ingredients.group(:id).having('count(*) >= 2').pluck(:id)
     recipes = []
     recipe_lists.each do |recipe_list|
       recipes.push(recipe_list.recipe)
