@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_173808) do
+ActiveRecord::Schema.define(version: 2022_03_22_171320) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,14 +36,6 @@ ActiveRecord::Schema.define(version: 2022_03_22_173808) do
     t.string "name", null: false
     t.string "email", null: false
     t.text "message", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredients", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "quantity", null: false
-    t.integer "post_recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
