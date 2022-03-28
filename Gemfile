@@ -67,6 +67,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "dotenv-rails"
+group :production do
+  gem 'mysql2'
+end
 gem "jquery-rails"
 gem 'kaminari'
 gem 'bootstrap', '~> 4.5'
