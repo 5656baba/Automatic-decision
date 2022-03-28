@@ -15,11 +15,11 @@ class SearchController < ApplicationController
       recipe_ingredients = RecipeIngredient.where("ingredient LIKE ?", "%" + @keywords + "%")
     end
 
-    recipe_lists = recipe_ingredients.pluck(:recipe_id).compact.uniq!
     recipes = []
-    recipe_lists.each do |recipe_list|
-      recipes.push(recipe_list.recipe)
+    recipe_ingredients.each do |recipe_ingredient|
+      recipes.push(recipe_ingredient.recipe)
     end
+    recipes.uniq!
     recipes_order = recipes.sort_by! { |v| v.recipe_ingredients.count }
     @recipes = Kaminari.paginate_array(recipes_order).page(params[:page]).per(15)
     @quantity = recipes.count
