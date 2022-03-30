@@ -14,8 +14,8 @@ class SearchController < ApplicationController
     else
       recipe_ingredients = Recipe.joins(:recipe_ingredients).where("ingredient LIKE ?", "%" + @keywords + "%")
     end
-    @quantity = recipe_ingredients.distinct.count
-    @recipes = recipe_ingredients.group(:id).order("count(recipe_ingredients.id) asc").distinct.page(params[:page]).per(15)
+    @quantity = recipe_ingredients.count
+    @recipes = recipe_ingredients.group(:id).order("count(recipe_ingredients.id) asc").page(params[:page]).per(15)
 #    recipes = []
 #    recipe_ingredients.each do |recipe_ingredient|
 #      recipes.push(recipe_ingredient.recipe)
