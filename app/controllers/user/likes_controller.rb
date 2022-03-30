@@ -5,7 +5,7 @@ class User::LikesController < ApplicationController
   def create
     @comment = Comment.find(params[:comment_id])
     like = @comment.likes.new(user_id: current_user.id)
-    like.save
+    like.save!
     @post = Post.find(params[:post_id])
   end                           # find idのみ  find_by カラム指定
 
