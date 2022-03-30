@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get  "check" => redirect("/contacts/new")
   post 'contacts/back', to: 'contacts#back', as: 'back'
   get 'search', to: 'search#search'
+  get  "users" => redirect("/users/sign_up")
 end
