@@ -13,7 +13,12 @@ class SearchController < ApplicationController
       end
     else
       recipe_ingredients = Recipe.joins(:recipe_ingredients).where("ingredient LIKE ?", "%" + @keywords + "%")
+      #recipe_ingredients = RecipeIngredient.where("ingredient LIKE ?",  "%" + keyword.to_hira + "%")
     end
+
+
+
+
     @quantity = recipe_ingredients.count
     recipes = recipe_ingredients.group(:id).order("id asc").distinct
     recipes_order = recipes.sort_by{ |v| v.recipe_ingredients.count }
