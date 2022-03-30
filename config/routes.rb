@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   get 'thanks', to: 'contacts#thanks'
   post 'check', to: 'contacts#check'
+  get  "check" => redirect("/contact/new")
   post 'contacts/back', to: 'contacts#back', as: 'back'
   get 'search', to: 'search#search'
 end
