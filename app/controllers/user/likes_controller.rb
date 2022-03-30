@@ -12,7 +12,7 @@ class User::LikesController < ApplicationController
   def destroy
     @comment = Comment.find_by(id: params[:comment_id], post_id: params[:post_id])
     like = current_user.likes.find_by(comment_id: @comment.id, post_id: @comment.post.id)
-    like.destroy
+    like.destroy!
     @post = Post.find(params[:post_id])
   end
 
