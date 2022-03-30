@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
 
   def check
     @contact = Contact.new(contact_params)
-    render :new if @contact.invalid?
+    #render :new if @contact.invalid?
     if params[:contact][:name] == "" && params[:contact][:email] != "" && params[:contact][:message] != ""
       flash.now[:notice] = "お名前を入力してください"
       @contact = Contact.new(contact_params)
