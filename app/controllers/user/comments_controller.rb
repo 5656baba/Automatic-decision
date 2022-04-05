@@ -14,7 +14,10 @@ class User::CommentsController < ApplicationController
   end
 
   def destroy
-    if @comment = Comment.find(params[:id]).destroy
+    if @comment.user != current_user
+      redirect_to new_user_session_path
+    else
+      @comment = Comment.find(params[:id]).destroy
       redirect_to post_path(params[:post_id])
     end
   end
