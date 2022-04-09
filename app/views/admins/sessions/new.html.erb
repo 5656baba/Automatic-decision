@@ -5,11 +5,6 @@
     <h2>管理者ログイン</h2>
     <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
       <%= render "admins/shared/error_messages", resource: resource %>
-      <% if flash[:alert] %>
-        <div class="flash-alert">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
       <div class="field">
         <%= f.label :メールアドレス %><br/>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com", size: "40x10", class: "rounded form" %>
