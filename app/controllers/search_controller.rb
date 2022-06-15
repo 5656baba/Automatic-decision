@@ -20,7 +20,7 @@ class SearchController < ApplicationController
 
 
     @quantity = recipe_ingredients.count
-    recipes = recipe_ingredients.group(:id).order("id asc").distinct
+    recipes = recipe_ingredients.group(:id).order("id asc").distinct # id asc 昇順
     recipes_order = recipes.sort_by{ |v| v.recipe_ingredients.count }
     @recipes = Kaminari.paginate_array(recipes_order).page(params[:page]).per(15)
 

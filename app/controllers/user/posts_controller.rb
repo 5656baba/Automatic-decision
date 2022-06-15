@@ -42,13 +42,16 @@ class User::PostsController < ApplicationController
   end
 
   def destroy
-    if @post.user != current_user
-      redirect_to new_user_session_path
-    else
-      @post = Post.find(params[:id])
-      @post.destroy
-      redirect_to posts_path
-    end
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
+    # if @post.user != current_user
+    #   redirect_to new_user_session_path
+    # else
+    #   @post = Post.find(params[:id])
+    #   @post.destroy
+    #   redirect_to posts_path
+    # end
   end
 
   private
